@@ -5,10 +5,8 @@
 
 
 def is_odd(n: int) -> bool:
-    if n % 2 == 1:
-        return False
-    else:
-        return True
+    return n % 2 == 0
+
 
 
 assert is_odd(4)

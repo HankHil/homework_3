@@ -7,8 +7,10 @@
 def get_triangle_kind(a: int, b: int, c: int) -> str:
     if a == b == c:
         return "равносторонний"
-    elif (a == b or b == c or c == a) & ((a != b or b != c or c != a)):
+    elif a == b or b == c or c == a:
         return "равнобедренный"
+    elif a > b + c or b > a + c or c > b + a:
+        return "треугольник не существует"
     else:
         return "обычный"
 
