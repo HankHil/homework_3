@@ -1,5 +1,3 @@
-from calendar import firstweekday
-
 
 def fill_missed_years(d: dict) -> dict:
     years = sorted([(int(k),v) for k,v in d.items()])
