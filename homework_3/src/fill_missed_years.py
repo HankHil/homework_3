@@ -1,9 +1,21 @@
+from calendar import firstweekday
+
+
 def fill_missed_years(d: dict) -> dict:
-    #d = {int(k): v for (k, v) in d.items()}
-    years = list(int(x) for x in d)
-    a = {}
-    a = a.setdefault(list(range(years[0], years[-1]+1)))
-    return a
+    years = sorted([(int(k),v) for k,v in d.items()])
+    result = {}
+    for i in range(len(years)-1):
+        y_start, v_start = years[i]
+        y_end, v_end = years[i+1]
+        result[y_start] = v_start
+        if y_end - y_start > 1:
+            step = (v_end - v_start) / (y_end - y_start)
+            for year in range(y_start + 1, y_end):
+                val = v_start + step*(year - y_start)
+                result[year] = int(val)
+    y_last, v_last = years[-1]
+    result[y_last] = v_last
+    return {str(k):v for k,v in result.items()}
 
 
 yearly_sales = {
@@ -45,4 +57,4 @@ def test_fill_missed_years():
     }
 
 
-
+test_fill_missed_years()
